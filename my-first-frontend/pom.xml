@@ -16,6 +16,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
+    <main.class>abhishek.josyula.App</main.class>
   </properties>
 
   <dependencies>
@@ -36,6 +37,7 @@
 
   <build>
     <plugins>
+      <!--Antlr plugin to generate source files from g4 files-->
       <plugin>
         <groupId>org.antlr</groupId>
         <artifactId>antlr4-maven-plugin</artifactId>
@@ -44,6 +46,34 @@
           <execution>
             <goals>
               <goal>antlr4</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!--Plugin to include dependencies in jarfile-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+
+        <configuration>
+        <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+        </descriptorRefs>
+        <archive>
+            <manifest>
+                <addClasspath>true</addClasspath>
+                <mainClass>${main.class}</mainClass>
+            </manifest>
+        </archive>
+        </configuration>
+
+        <executions>
+          <execution>
+            <id>assemble-all</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
             </goals>
           </execution>
         </executions>
@@ -70,18 +100,10 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.22.1</version>
         </plugin>
-        <plugin>
+        <!-- <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.0.2</version>
-          <configuration>
-            <archive>
-              <manifest>
-                <addClasspath>true</addClasspath>
-                <mainClass>abhishek.josyula.App</mainClass>
-              </manifest>
-            </archive>
-          </configuration>
-        </plugin>
+        </plugin> -->
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
           <version>2.5.2</version>
