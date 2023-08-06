@@ -1,5 +1,4 @@
-package abhishek.josyula.app;
-
+package abhishek.josyula;
 /**
  * Hello world!
  *
@@ -8,6 +7,6 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        
     }
 }

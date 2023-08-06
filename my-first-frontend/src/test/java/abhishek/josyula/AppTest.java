@@ -1,4 +1,4 @@
-package abhishek.josyula.app;
+package abhishek.josyula;
 
 import static org.junit.Assert.assertTrue;
 
